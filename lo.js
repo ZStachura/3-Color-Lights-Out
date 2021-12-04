@@ -5,6 +5,7 @@ window.onload=function () {
     var win=false;
 	cellArray = document.getElementsByClassName("lightit");
     newgame = document.getElementById("restart")
+    help=document.getElementById("hint")
     ch1=document.getElementById("change1")
     ch2=document.getElementById("change2")
     ch3=document.getElementById("change3")
@@ -26,12 +27,23 @@ window.onload=function () {
         window.location.reload()
     }
 
+    function NewBoard(){
+        for(var i=1; i<6;i++){
+            for(var j=1; j<6;j++)
+            {
+                document.getElementById((i*10)+j).className="lightit"
+            }
+        }
+    }
+
+//#region Change shape buttons
     function change1(e)
     {
         ctc=1;
         ch3.classList.value=''
         ch2.classList.value=''
         ch1.classList.toggle('active');
+        NewBoard()
     }
     function change2(e)
     {
@@ -39,6 +51,7 @@ window.onload=function () {
         ch1.classList.value=''
         ch3.classList.value=''
         ch2.classList.toggle('active');
+        NewBoard()
     }
     function change3(e)
     {
@@ -46,264 +59,247 @@ window.onload=function () {
         ch1.classList.value=''
         ch2.classList.value=''
         ch3.classList.toggle('active');
+        NewBoard()
     }
-
+//#endregion
     function lightClick() {
-
-        if(this.classList == "lightit")
+//#region Middle
+        if(this.className == "lightit")
         {
-            this.classList.value=''
-            this.classList.toggle("light-on1")
+            this.className="light-on1"
         }
         else{
-        if(this.classList == "light-on1")
+        if(this.className == "light-on1")
         {
-            this.classList.value=''
-            this.classList.toggle("light-on2")
+            this.className="light-on2"
         }
         else{
-        if(this.classList == "light-on2")
+        if(this.className == "light-on2")
         {
-            this.classList.value=''
-            this.classList.toggle("lightit")
+            this.className="lightit"
         }
     }
     }
+//#endregion
+//#region First shape
     if(ctc==1){
         
         i=+this.id;
-        switch( document.getElementById((i-10).toString()).classList.toString()) {
+        if(i-10 > 10){
+        switch( document.getElementById((i-10).toString()).className) {
             case 'lightit':
-                document.getElementById((i-10).toString()).classList.value=''
-                document.getElementById((i-10).toString()).classList.toggle("light-on1")
+                document.getElementById((i-10).toString()).className="light-on1"
                 break;
             case 'light-on1':
-                document.getElementById((i-10).toString()).classList.value=''
-                document.getElementById((i-10).toString()).classList.toggle("light-on2")
+                document.getElementById((i-10).toString()).className="light-on2"
                 break;
             case 'light-on2':
-                document.getElementById((i-10).toString()).classList.value=''
-                document.getElementById((i-10).toString()).classList.toggle("lightit")
+                document.getElementById((i-10).toString()).className="lightit"
                 break;
-        }
-        switch( document.getElementById((i-1).toString()).classList.toString()) {
+        }}
+        if((i-1)%10 > 0){
+        switch( document.getElementById((i-1).toString()).className) {
             case 'lightit':
-                document.getElementById((i-1).toString()).classList.value=''
-                document.getElementById((i-1).toString()).classList.toggle("light-on1")
+                document.getElementById((i-1).toString()).className="light-on1"
                 break;
             case 'light-on1':
-                document.getElementById((i-1).toString()).classList.value=''
-                document.getElementById((i-1).toString()).classList.toggle("light-on2")
+                document.getElementById((i-1).toString()).className="light-on2"
                 break;
             case 'light-on2':
-                document.getElementById((i-1).toString()).classList.value=''
-                document.getElementById((i-1).toString()).classList.toggle("lightit")
+                document.getElementById((i-1).toString()).className="lightit"
                 break;
-        }
-        switch( document.getElementById((i+1).toString()).classList.toString()) {
+        }}
+        if((i+1)%10<6){
+        switch( document.getElementById((i+1).toString()).className) {
             case 'lightit':
-                document.getElementById((i+1).toString()).classList.value=''
-                document.getElementById((i+1).toString()).classList.toggle("light-on1")
+                document.getElementById((i+1).toString()).className="light-on1"
                 break;
             case 'light-on1':
-                document.getElementById((i+1).toString()).classList.value=''
-                document.getElementById((i+1).toString()).classList.toggle("light-on2")
+                document.getElementById((i+1).toString()).className="light-on2"
                 break;
             case 'light-on2':
-                document.getElementById((i+1).toString()).classList.value=''
-                document.getElementById((i+1).toString()).classList.toggle("lightit")
+                document.getElementById((i+1).toString()).className="lightit"
                 break;
-        }
-        switch( document.getElementById((i+11).toString()).classList.toString()) {
+        }}
+        if((i+11)<56 && (i+11)%10<6){
+        switch( document.getElementById((i+11).toString()).className) {
             case 'lightit':
-                document.getElementById((i+11).toString()).classList.value=''
-                document.getElementById((i+11).toString()).classList.toggle("light-on1")
+                document.getElementById((i+11).toString()).className="light-on1"
                 break;
             case 'light-on1':
-                document.getElementById((i+11).toString()).classList.value=''
-                document.getElementById((i+11).toString()).classList.toggle("light-on2")
+                document.getElementById((i+11).toString()).className="light-on2"
                 break;
             case 'light-on2':
-                document.getElementById((i+11).toString()).classList.value=''
-                document.getElementById((i+11).toString()).classList.toggle("lightit")
+                document.getElementById((i+11).toString()).className="lightit"
                 break;
-        }
-        switch( document.getElementById((i+9).toString()).classList.toString()) {
+        }}
+        if((i+9)<56 && (i+9)%10<6 && (i+9)%10>0){
+        switch( document.getElementById((i+9).toString()).className) {
             case 'lightit':
-                document.getElementById((i+9).toString()).classList.value=''
-                document.getElementById((i+9).toString()).classList.toggle("light-on1")
+                document.getElementById((i+9).toString()).className="light-on1"
                 break;
             case 'light-on1':
-                document.getElementById((i+9).toString()).classList.value=''
-                document.getElementById((i+9).toString()).classList.toggle("light-on2")
+                document.getElementById((i+9).toString()).className="light-on2"
                 break;
             case 'light-on2':
-                document.getElementById((i+9).toString()).classList.value=''
-                document.getElementById((i+9).toString()).classList.toggle("lightit")
+                document.getElementById((i+9).toString()).className="lightit"
                 break;
-        }
+        }}
     }
+    //#endregion
+//#region Second shape
     if(ctc==2){
         i=+this.id;
-        switch( document.getElementById((i-10).toString()).classList.toString()) {
+        if(i-10 > 10){
+        switch( document.getElementById((i-10).toString()).className) {
             case 'lightit':
-                document.getElementById((i-10).toString()).classList.value=''
-                document.getElementById((i-10).toString()).classList.toggle("light-on1")
+                document.getElementById((i-10).toString()).className="light-on1"
                 break;
             case 'light-on1':
-                document.getElementById((i-10).toString()).classList.value=''
-                document.getElementById((i-10).toString()).classList.toggle("light-on2")
+                document.getElementById((i-10).toString()).className="light-on2"
                 break;
             case 'light-on2':
-                document.getElementById((i-10).toString()).classList.value=''
-                document.getElementById((i-10).toString()).classList.toggle("lightit")
+                document.getElementById((i-10).toString()).className="lightit"
                 break;
-        }
-        switch( document.getElementById((i-1).toString()).classList.toString()) {
+        }}
+        if((i-1)%10 > 0){
+        switch( document.getElementById((i-1).toString()).className) {
             case 'lightit':
-                document.getElementById((i-1).toString()).classList.value=''
-                document.getElementById((i-1).toString()).classList.toggle("light-on1")
+                document.getElementById((i-1).toString()).className="light-on1"
                 break;
             case 'light-on1':
-                document.getElementById((i-1).toString()).classList.value=''
-                document.getElementById((i-1).toString()).classList.toggle("light-on2")
+                document.getElementById((i-1).toString()).className="light-on2"
                 break;
             case 'light-on2':
-                document.getElementById((i-1).toString()).classList.value=''
-                document.getElementById((i-1).toString()).classList.toggle("lightit")
+                document.getElementById((i-1).toString()).className="lightit"
                 break;
-        }
-        switch( document.getElementById((i+10).toString()).classList.toString()) {
+        }}
+        if((i+10)<56){
+        switch( document.getElementById((i+10).toString()).className) {
             case 'lightit':
-                document.getElementById((i+10).toString()).classList.value=''
-                document.getElementById((i+10).toString()).classList.toggle("light-on1")
+                document.getElementById((i+10).toString()).className="light-on1"
                 break;
             case 'light-on1':
-                document.getElementById((i+10).toString()).classList.value=''
-                document.getElementById((i+10).toString()).classList.toggle("light-on2")
+                document.getElementById((i+10).toString()).className="light-on2"
                 break;
             case 'light-on2':
-                document.getElementById((i+10).toString()).classList.value=''
-                document.getElementById((i+10).toString()).classList.toggle("lightit")
+                document.getElementById((i+10).toString()).className="lightit"
                 break;
-        }
-        switch( document.getElementById((i+11).toString()).classList.toString()) {
+        }}
+        if((i+11)<56 && (i+11)%10<6){
+        switch( document.getElementById((i+11).toString()).className) {
             case 'lightit':
-                document.getElementById((i+11).toString()).classList.value=''
-                document.getElementById((i+11).toString()).classList.toggle("light-on1")
+                document.getElementById((i+11).toString()).className="light-on1"
                 break;
             case 'light-on1':
-                document.getElementById((i+11).toString()).classList.value=''
-                document.getElementById((i+11).toString()).classList.toggle("light-on2")
+                document.getElementById((i+11).toString()).className="light-on2"
                 break;
             case 'light-on2':
-                document.getElementById((i+11).toString()).classList.value=''
-                document.getElementById((i+11).toString()).classList.toggle("lightit")
+                document.getElementById((i+11).toString()).className="lightit"
                 break;
-        }
-        switch( document.getElementById((i-9).toString()).classList.toString()) {
+        }}
+        if((i-9)>10 && (i-9)%10<6 && (i-9)%10>0){
+        switch( document.getElementById((i-9).toString()).className) {
             case 'lightit':
-                document.getElementById((i-9).toString()).classList.value=''
-                document.getElementById((i-9).toString()).classList.toggle("light-on1")
+                document.getElementById((i-9).toString()).className="light-on1"
                 break;
             case 'light-on1':
-                document.getElementById((i-9).toString()).classList.value=''
-                document.getElementById((i-9).toString()).classList.toggle("light-on2")
+                document.getElementById((i-9).toString()).className="light-on2"
                 break;
             case 'light-on2':
-                document.getElementById((i-9).toString()).classList.value=''
-                document.getElementById((i-9).toString()).classList.toggle("lightit")
+                document.getElementById((i-9).toString()).className="lightit"
                 break;
-        }
-    } 
+        }}
+    }
+    //#endregion
+//#region Third shape 
     if(ctc==3)
     {
         i=+this.id;
-        switch( document.getElementById((i+1).toString()).classList.toString()) {
+        if((i+1)%10 <6 ){
+        switch( document.getElementById((i+1).toString()).className) {
             case 'lightit':
-                document.getElementById((i+1).toString()).classList.value=''
-                document.getElementById((i+1).toString()).classList.toggle("light-on1")
+                document.getElementById((i+1).toString()).className="light-on1"
                 break;
             case 'light-on1':
-                document.getElementById((i+1).toString()).classList.value=''
-                document.getElementById((i+1).toString()).classList.toggle("light-on2")
+                document.getElementById((i+1).toString()).className="light-on2"
                 break;
             case 'light-on2':
-                document.getElementById((i+1).toString()).classList.value=''
-                document.getElementById((i+1).toString()).classList.toggle("lightit")
+                document.getElementById((i+1).toString()).className="lightit"
                 break;
-        }
-        switch( document.getElementById((i-1).toString()).classList.toString()) {
+        }}
+        if((i-1)%10>0){
+        switch( document.getElementById((i-1).toString()).className) {
             case 'lightit':
-                document.getElementById((i-1).toString()).classList.value=''
-                document.getElementById((i-1).toString()).classList.toggle("light-on1")
+                document.getElementById((i-1).toString()).className="light-on1"
                 break;
             case 'light-on1':
-                document.getElementById((i-1).toString()).classList.value=''
-                document.getElementById((i-1).toString()).classList.toggle("light-on2")
+                document.getElementById((i-1).toString()).className="light-on2"
                 break;
             case 'light-on2':
-                document.getElementById((i-1).toString()).classList.value=''
-                document.getElementById((i-1).toString()).classList.toggle("lightit")
+                document.getElementById((i-1).toString()).className="lightit"
                 break;
-        }
-        switch( document.getElementById((i+11).toString()).classList.toString()) {
+        }}
+        if((i+11)<56 && (i+11)%10<6){
+        switch( document.getElementById((i+11).toString()).className) {
             case 'lightit':
-                document.getElementById((i+11).toString()).classList.value=''
-                document.getElementById((i+11).toString()).classList.toggle("light-on1")
+                document.getElementById((i+11).toString()).className="light-on1"
                 break;
             case 'light-on1':
-                document.getElementById((i+11).toString()).classList.value=''
-                document.getElementById((i+11).toString()).classList.toggle("light-on2")
+                document.getElementById((i+11).toString()).className="light-on2"
                 break;
             case 'light-on2':
-                document.getElementById((i+11).toString()).classList.value=''
-                document.getElementById((i+11).toString()).classList.toggle("lightit")
+                document.getElementById((i+11).toString()).className="lightit"
                 break;
-        }
-        switch( document.getElementById((i-11).toString()).classList.toString()) {
+        }}
+        if((i-11)>10 && (i-11)%10>0 && (i-11)%10<7){
+        switch( document.getElementById((i-11).toString()).className) {
             case 'lightit':
-                document.getElementById((i-11).toString()).classList.value=''
-                document.getElementById((i-11).toString()).classList.toggle("light-on1")
+                document.getElementById((i-11).toString()).className="light-on1"
                 break;
             case 'light-on1':
-                document.getElementById((i-11).toString()).classList.value=''
-                document.getElementById((i-11).toString()).classList.toggle("light-on2")
+                document.getElementById((i-11).toString()).className="light-on2"
                 break;
             case 'light-on2':
-                document.getElementById((i-11).toString()).classList.value=''
-                document.getElementById((i-11).toString()).classList.toggle("lightit")
+                document.getElementById((i-11).toString()).className="lightit"
                 break;
-        }
-        switch( document.getElementById((i+9).toString()).classList.toString()) {
+        }}
+        if((i+9)<56 && (i+9)%10<6 && (i+9)%10>0){
+        switch( document.getElementById((i+9).toString()).className) {
             case 'lightit':
-                document.getElementById((i+9).toString()).classList.value=''
-                document.getElementById((i+9).toString()).classList.toggle("light-on1")
+                document.getElementById((i+9).toString()).className="light-on1"
                 break;
             case 'light-on1':
-                document.getElementById((i+9).toString()).classList.value=''
-                document.getElementById((i+9).toString()).classList.toggle("light-on2")
+                document.getElementById((i+9).toString()).className="light-on2"
                 break;
             case 'light-on2':
-                document.getElementById((i+9).toString()).classList.value=''
-                document.getElementById((i+9).toString()).classList.toggle("lightit")
+                document.getElementById((i+9).toString()).className="lightit"
                 break;
-        }
-        switch( document.getElementById((i-9).toString()).classList.toString()) {
+        }}
+        if((i-9)>10 && (i-9)%10<6 && (i-9)%10>0){
+        switch( document.getElementById((i-9).toString()).className) {
             case 'lightit':
-                document.getElementById((i-9).toString()).classList.value=''
-                document.getElementById((i-9).toString()).classList.toggle("light-on1")
+                document.getElementById((i-9).toString()).className="light-on1"
                 break;
             case 'light-on1':
-                document.getElementById((i-9).toString()).classList.value=''
-                document.getElementById((i-9).toString()).classList.toggle("light-on2")
+                document.getElementById((i-9).toString()).className="light-on2"
                 break;
             case 'light-on2':
-                document.getElementById((i-9).toString()).classList.value=''
-                document.getElementById((i-9).toString()).classList.toggle("lightit")
+                document.getElementById((i-9).toString()).className="lightit"
                 break;
-        }
+        }}
     }
+    //#endregion
 
-}  
+} 
+var modal = document.getElementById("myModal");
+
+help.onclick = function() {
+  modal.style.display = "block";
+}
+window.onclick = function(event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+}
 }
