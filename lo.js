@@ -3,6 +3,7 @@ window.onload=function () {
     var cellArray = [];
     var helpArray = [];
     var hintArray =[];
+    var badmoveArray=[];
     var win=false;
 	cellArray = document.getElementsByClassName("lightit");
     newgame = document.getElementById("restart")
@@ -34,6 +35,8 @@ window.onload=function () {
 
     function NewBoard(){
         helpArray=[];
+        hintArray=[];
+        badmoveArray=[];
         for(var i=1; i<6;i++){
             for(var j=1; j<6;j++)
             {
@@ -45,7 +48,7 @@ window.onload=function () {
 
     function RandomLights()
     {
-        var moves = randomInteger(2,5)
+        var moves = randomInteger(5,15)
         console.log("Number of moves:" ,moves)
         for(var n=0; n<moves;n++)
         {
@@ -53,7 +56,8 @@ window.onload=function () {
             var y=randomInteger(1,5)
             var i_d=y*10+x
             console.log("id of the move: ",i_d) 
-            helpArray.push(i_d)
+            helpArray.unshift(i_d)
+            helpArray.unshift(i_d)
             GenerateClicks(i_d)        
         }
         console.log("Help Array :",helpArray)
@@ -62,6 +66,21 @@ window.onload=function () {
     function GenerateClicks(i){
     //#region generate clicks
     console.log("Click",i)
+    if(document.getElementById(i).className == "lightit")
+        {
+            document.getElementById(i).className="light-on1"
+        }
+        else{
+        if(document.getElementById(i).className == "light-on1")
+        {
+            document.getElementById(i).className="light-on2"
+        }
+        else{
+        if(document.getElementById(i).className == "light-on2")
+        {
+            document.getElementById(i).className="lightit"
+        }
+    }}
     //#region First shape
     if(ctc==1){
         
@@ -277,14 +296,23 @@ window.onload=function () {
 
     function Help()
     {   
-        hintArray=helpArray
+        if(badmoveArray.length>0){
+            var p =badmoveArray[0]
+            document.getElementById(p).classList.add("hoverbutton")
+            console.log("Bad move Array Hint:",badmoveArray)
+        }
+        else{
+        if(helpArray.length<1){
+            helpArray=hintArray;
+            hintArray=[];
+        }
         console.log("Array:" ,helpArray)
-        var p=hintArray[0]
-        hintArray.shift()
+        var p=helpArray[0]
+        helpArray.shift()
         hintArray.push(p)
-        console.log("help: ", p, "Array:", hintArray)
+        console.log("help: ", p, "HelpArray:", helpArray, "HintArray: ", hintArray)
         RemoveHelp()
-        document.getElementById(p).classList.add("hoverbutton")
+        document.getElementById(p).classList.add("hoverbutton")}
    }
    function RemoveHelp(){
     for(var i=1; i<6;i++){
@@ -323,6 +351,17 @@ window.onload=function () {
 //#endregion
     function lightClick() {
         RemoveHelp()
+        if(badmoveArray[0]==this.id.toString())
+        {
+            badmoveArray.shift()
+        }
+        else{
+        if(helpArray[0]!=this.id.toString() && hintArray[hintArray.length-1]!=this.id.toString())
+        {
+            badmoveArray.unshift(this.id)
+            badmoveArray.unshift(this.id)
+        }}
+        console.log("After click: Help:",helpArray,"bad move:",badmoveArray)
 //#region Middle
         if(this.className == "lightit")
         {
@@ -575,8 +614,8 @@ function showwin(){
     window.onclick = function(event) {
         if (event.target == modal) {
           modal.style.display = "none";
+          start()
         }
     }   
-    start()
 }
 }
