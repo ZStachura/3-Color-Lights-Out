@@ -1,4 +1,197 @@
-window.onload=function () {
+<!DOCTYPE html>
+<html lang="pl">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<head>
+    <title>Lights Out</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <style>
+        body {
+    margin: 0;
+    font-size: 28px;
+    font-family: OCR A Std, monospace;
+    display: grid;
+    background-color: rgb(105, 105, 105);
+  }
+#start, #shape {
+	float: right;
+	text-align: center;
+	margin: 5px;
+}
+
+#container {
+  margin: 40px auto;
+  text-align: center;
+  float: left;
+}
+#restart, #change1, #change2, #change3, #hint {
+  background-color: Gray; 
+  cursor: pointer;
+  border: none;
+  color: black;
+  padding: 10px 10px;
+  text-align: center;
+  text-decoration: none;
+  font-size: 16px;
+  transition-duration: 0.4s;
+  text-align: center;
+  margin: 2px;
+}
+#change1, #change2, #change3{
+  padding: 5px 15px;
+}
+#change1.active, #change2.active, #change3.active{
+  background-color: lightsalmon
+}
+#shape{
+  text-align: center;
+  border: black;
+  font-size: 15px;
+}
+.lightit {
+	cursor: pointer;
+	position: relative;
+	display: inline-block;
+	width: 50px;
+	height: 50px;
+	margin: 0px;
+	padding: 0px;
+	border: none;
+	border-radius: 20px;
+	background-color: Gray;
+}
+
+.light-on1 {
+  cursor: pointer;
+	position: relative;
+	display: inline-block;
+	width: 50px;
+	height: 50px;
+	margin: 0px;
+	padding: 0px;
+	border: none;
+	border-radius: 20px;
+	background-color: rebeccapurple;
+}
+.light-on2 {
+  cursor: pointer;
+	position: relative;
+	display: inline-block;
+	width: 50px;
+	height: 50px;
+	margin: 0px;
+	padding: 0px;
+	border: none;
+	border-radius: 20px;
+	background-color: greenyellow;
+}
+
+.hoverbutton {
+	box-shadow: 
+		0px 0px 0px 6px lightsalmon,
+		0px 2px 10px 1px #BBB;		
+}
+
+.modal {
+	display: none; 
+	position: fixed; 
+	z-index: 1; 
+	padding-top: 60px; 
+	left: 0;
+	top: 0;
+	width: 100%; 
+	height: 100%;
+	overflow: auto; 
+	background-color: rgb(0,0,0); 
+  background-color: rgba(0,0,0,0.4);
+  }
+  
+  .modal-content {
+	background-color: lightsalmon;
+	margin: auto;
+	padding: 20px;
+	border: 1px solid #888;
+	width: 80%;
+	text-align: center;
+  }
+
+  #showwin {
+	 visibility: hidden;
+	  text-align: center;
+  	border: black;
+  	font-size: 15px;
+	  
+  }
+  
+    </style>
+</head>
+<body>
+    <div id="start">
+        <h1>Lights Out</h1>
+        <h6>Game when you need to remove all the lights</h6>
+        <div id="setup">
+            
+            <!-- in game -->
+            <button id="restart">Restart</button>
+            <button id="hint">Hint</button>
+        </div>
+    </div>
+    <div id="container">        
+        <div id="gameboard">
+            <div class="row">
+                <div class="lightit" id="11"></div>
+                <div class="lightit" id="12"></div>
+                <div class="lightit" id="13"></div>
+                <div class="lightit" id="14"></div>
+                <div class="lightit" id="15"></div> 
+            </div>
+            <div class="row">
+                <div class="lightit" id="21"></div>
+                <div class="lightit" id="22"></div>
+                <div class="lightit" id="23"></div>
+                <div class="lightit" id="24"></div>
+                <div class="lightit" id="25"></div> 
+            </div>
+            <div class="row">
+                <div class="lightit" id="31"></div>
+                <div class="lightit" id="32"></div>
+                <div class="lightit" id="33"></div>
+                <div class="lightit" id="34"></div>
+                <div class="lightit" id="35"></div> 
+            </div>
+            <div class="row">
+                <div class="lightit" id="41"></div>
+                <div class="lightit" id="42"></div>
+                <div class="lightit" id="43"></div>
+                <div class="lightit" id="44"></div>
+                <div class="lightit" id="45"></div> 
+            </div>
+            <div class="row">
+                <div class="lightit" id="51"></div>
+                <div class="lightit" id="52"></div>
+                <div class="lightit" id="53"></div>
+                <div class="lightit" id="54"></div>
+                <div class="lightit" id="55"></div> 
+            </div>
+        </div>
+    </div>
+    <div id="shape">
+        <button id="change1"><img src="Images/shape1.png"></button>
+        <button id="change2"><img src="Images/shape2.png"></button>
+        <button id="change3"><img src="Images/shape3.png"></button>
+    </div>
+    <button id="showwin" >Show me how it looks when I win</button>
+</body>
+
+<!-- The Modal -->
+<div id="myModal" class="modal">
+
+  <div class="modal-content">
+    <h1>Bravo! You did it!</h1>
+  </div>
+
+</div>
+<script>
+    window.onload=function () {
     var ctc=1;
     var cellArray = [];
     var helpArray = [];
@@ -580,3 +773,6 @@ function showwin(){
     start()
 }
 }
+
+</script>
+</html>

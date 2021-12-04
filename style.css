@@ -78,6 +78,12 @@ body {
 	background-color: greenyellow;
 }
 
+.hoverbutton {
+	box-shadow: 
+		0px 0px 0px 6px lightsalmon,
+		0px 2px 10px 1px #BBB;		
+}
+
 .modal {
 	display: none; 
 	position: fixed; 
@@ -99,5 +105,13 @@ body {
 	border: 1px solid #888;
 	width: 80%;
 	text-align: center;
+  }
+
+  #showwin {
+	 visibility: hidden;
+	  text-align: center;
+  	border: black;
+  	font-size: 15px;
+	  
   }
   
